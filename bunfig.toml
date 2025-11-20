@@ -1,0 +1,18 @@
+[install]
+# Use exact versions for reproducibility
+exact = true
+
+[install.cache]
+# Cache dependencies
+disable = false
+
+[run]
+# Enable hot reloading in development
+hot = true
+
+[test]
+preload = ["./src/server/test-setup.ts"]
+
+[build]
+# Minify production builds
+minify = true

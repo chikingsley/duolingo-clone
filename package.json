@@ -3,15 +3,19 @@
   "version": "1.0.1",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
+    "dev": "bun run --watch src/server/index.ts",
+    "build": "bun build src/server/index.ts --outdir ./dist --target bun",
+    "start": "bun run dist/index.js",
+    "lint": "eslint src --ext .ts,.tsx",
     "format": "prettier --check --ignore-path .gitignore .",
     "format:fix": "prettier --write --ignore-path .gitignore .",
-    "db:studio": "npx drizzle-kit studio",
-    "db:push": "npx drizzle-kit push",
-    "db:prod": "tsx ./scripts/prod.ts"
+    "db:studio": "drizzle-kit studio",
+    "db:push": "drizzle-kit push",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "docker:dev": "docker-compose up",
+    "docker:build": "docker-compose build",
+    "type-check": "tsc --noEmit"
   },
   "author": {
     "name": "Sanidhya Kumar Verma",
@@ -75,7 +79,11 @@
     }
   ],
   "dependencies": {
+    "@clerk/backend": "2.23.0",
     "@clerk/nextjs": "^6.22.0",
+    "@elysiajs/cors": "1.4.0",
+    "@elysiajs/html": "1.4.0",
+    "@elysiajs/static": "1.4.7",
     "@neondatabase/serverless": "^1.0.1",
     "@radix-ui/react-avatar": "^1.0.4",
     "@radix-ui/react-dialog": "^1.0.5",
@@ -86,6 +94,7 @@
     "clsx": "^2.1.0",
     "dotenv": "^16.4.5",
     "drizzle-orm": "^0.44.2",
+    "elysia": "1.4.16",
     "lucide-react": "^0.359.0",
     "next": "^14.2.33",
     "next-themes": "^0.3.0",
@@ -100,6 +109,7 @@
     "stripe": "^14.22.0",
     "tailwind-merge": "^2.2.2",
     "tailwindcss-animate": "^1.0.7",
+    "wouter": "3.7.1",
     "zustand": "^4.5.2"
   },
   "devDependencies": {
@@ -119,6 +129,7 @@
     "prettier-plugin-tailwindcss": "^0.5.12",
     "tailwindcss": "^3.3.0",
     "tsx": "^4.7.1",
-    "typescript": "^5"
+    "typescript": "^5",
+    "@types/bun": "latest"
   }
 }
