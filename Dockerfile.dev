@@ -1,0 +1,19 @@
+# Development Dockerfile for Full-Stack Bun App
+FROM oven/bun:1.2-alpine
+
+WORKDIR /app
+
+# Copy package files
+COPY package.json bun.lockb* ./
+
+# Install dependencies
+RUN bun install
+
+# Copy source code
+COPY . .
+
+# Expose port
+EXPOSE 3000
+
+# Start development server with hot reload
+CMD ["bun", "run", "--watch", "src/server/index.ts"]
